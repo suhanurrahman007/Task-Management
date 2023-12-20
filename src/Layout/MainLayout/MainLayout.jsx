@@ -1,8 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
 import avatar from "../../assets/avatar.png";
 import logo from "../../assets/logo/logo.png";
+import useAuth from "../../Hooks/useAuth";
 
 const MainLayout = ({ children }) => {
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      const user = await logout();
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
     const linkStyle = (isActive, isPending) => {
       if (isPending) return "text-gray-500 bg-gray-100";
       if (isActive) return "text-blue-300 font-bold bg-[#010313]";
@@ -68,7 +80,17 @@ const MainLayout = ({ children }) => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={avatar} />
+                {user ? (
+                  <>
+                    <img
+                      src={user?.photoURL}
+                      alt="Profile"
+                      className="w-8 h-8 rounded-full mr-2"
+                    />
+                  </>
+                ) : (
+                  <img src={avatar} />
+                )}
               </div>
             </label>
             <ul
@@ -79,9 +101,18 @@ const MainLayout = ({ children }) => {
                 Home
               </Link>
               <hr className="border-gray-800" />
-              <Link className="hover:font-bold" to={"/login"}>
-                Login
-              </Link>
+              {user ? (
+                <button
+                  onClick={handleLogout}
+                  className="hover:font-bold text-left" /* to={"/login"} */
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link className="hover:font-bold" to={"/login"}>
+                  Login
+                </Link>
+              )}
             </ul>
           </div>
         </div>

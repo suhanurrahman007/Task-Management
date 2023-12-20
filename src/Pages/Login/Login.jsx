@@ -1,8 +1,104 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import loginImg from "../../assets/login/login.svg"
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import loginImg from "../../assets/login/login.png";
+import { useState } from "react";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
+
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const { login, googleUser, githubUser, logout } = useAuth();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+
+    try {
+      const res = await login(email, password);
+      console.log(res.user);
+      if (res.user) {
+        Swal.fire({
+          icon: "success",
+          title: "Wow...",
+          text: "Successfully Login your account!",
+        });
+
+        navigate(location?.state ? location.state : "/");
+      } else {
+        logout();
+      }
+      console.log(res);
+    } catch (error) {
+      console.log(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Opps...",
+        text: `${error.message}`,
+      });
+    }
+  };
+
+  const handleGoogle = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    try {
+      const res = await googleUser(email, password);
+      if (res.user) {
+        Swal.fire({
+          icon: "success",
+          title: "Wow...",
+          text: "Successfully Login your account!",
+        });
+
+        navigate(location?.state ? location.state : "/");
+      } else {
+        logout();
+      }
+      console.log(res);
+    } catch (error) {
+      console.log(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Opps...",
+        text: `${error.message}`,
+      });
+    }
+  };
+
+  const handleGithub = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    try {
+      const res = await githubUser(email, password);
+      if (res.user) {
+        Swal.fire({
+          icon: "success",
+          title: "Wow...",
+          text: "Successfully Login your account!",
+        });
+
+        navigate(location?.state ? location.state : "/");
+      } else {
+        logout();
+      }
+      console.log(res);
+    } catch (error) {
+      console.log(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Opps...",
+        text: `${error.message}`,
+      });
+    }
+  };
   return (
     <div className="grid md:grid-cols-2 gap-5 p-5 py-14 bg-[#010313]">
       <div className="flex justify-center items-center">
@@ -14,7 +110,7 @@ const Login = () => {
           Sign In Please
         </h2>
 
-        <form className="card-body ">
+        <form onSubmit={handleLogin} className="card-body ">
           <div className="form-control">
             <label className="label">
               <span className="label-text text-white">
@@ -24,6 +120,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
+              onBlur={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="input bg-black text-white input-bordered placeholder:text-xs"
               required
@@ -36,8 +133,9 @@ const Login = () => {
               </span>
             </label>
             <input
-              // type={showPassword ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               name="password"
+              onBlur={(e) => setPassword(e.target.value)}
               placeholder="Enter your new password"
               className="input input-bordered bg-black text-white placeholder:text-xs"
               required
@@ -58,7 +156,7 @@ const Login = () => {
                 data-ripple-dark="true"
               >
                 <input
-                  // onClick={() => setShowPassword(!showPassword)}
+                  onClick={() => setShowPassword(!showPassword)}
                   type="checkbox"
                   className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
                   id="checkbox"
@@ -85,8 +183,7 @@ const Login = () => {
                 htmlFor="checkbox"
               >
                 <span className="text-white">
-                  Show Password
-                  {/* {showPassword ? "Hide Password" : "Show Password"} */}
+                  {showPassword ? "Hide Password" : "Show Password"}
                 </span>
               </label>
             </div>
@@ -113,6 +210,7 @@ const Login = () => {
           )} */}
         <div className="text-3xl px-7 space-y-5 mb-4">
           <button
+            onClick={handleGoogle}
             type="submit"
             className="btn btn-outline btn-[#140d32] w-full text-white bg-[#0e0d21] hover:bg-[#140d32]"
           >
@@ -121,6 +219,7 @@ const Login = () => {
           </button>
 
           <button
+            onClick={handleGithub}
             type="submit"
             className="btn btn-outline btn-[#140d32] w-full text-white bg-[#0e0d21] hover:bg-[#140d32]"
           >

@@ -1,6 +1,66 @@
-import { Link } from "react-router-dom";
-import signUpImg from "../../assets/signUp/signUp.png"
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import signUpImg from "../../assets/signUp/signUp.png";
+import { useState } from "react";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 const SignUp = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [photoUrl, setPhotoUrl] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  console.log(name, email, password, photoUrl);
+
+  const { createUser } = useAuth();
+  // console.log(createUser);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleRegistration = async (e) => {
+    e.preventDefault();
+    const passwordPatternUpper = /(?=.*?[A-Z])/;
+    const passwordPatternSpecial = /(?=.*?[#?!@$%^&*-])/;
+
+    if (password.length < 6) {
+      setError("Password Should Be At Least 6 Characters");
+      return;
+    }
+
+    if (!passwordPatternUpper.test(password)) {
+      setError("Password Must Be One Upper Case");
+      return;
+    }
+
+    if (!passwordPatternSpecial.test(password)) {
+      setError("Password Must Be One Special Character");
+      return;
+    }
+
+    setError("");
+
+    try {
+      const result = await createUser(email, password);
+      console.log("created", result.user);
+
+      Swal.fire({
+        icon: "success",
+        title: "Wow...",
+        text: "Successfully created your account!",
+      });
+      navigate(location?.state ? location.state : "/");
+    } catch (error) {
+      console.log(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Opps...",
+        text: `${error.message}`,
+      });
+    }
+  };
+
   return (
     <div className="grid md:grid-cols-2 gap-5 py-14 bg-[#010313]">
       <div className="flex justify-center items-center">
@@ -12,7 +72,7 @@ const SignUp = () => {
           Sign Up Please
         </h2>
 
-        <form className="card-body ">
+        <form onSubmit={handleRegistration} className="card-body ">
           <div className="form-control">
             <label className="label">
               <span className="label-text text-white">
@@ -21,6 +81,7 @@ const SignUp = () => {
             </label>
             <input
               type="text"
+              onBlur={(e) => setName(e.target.value)}
               name="name"
               placeholder="Enter your full Name"
               className="input bg-black text-white input-bordered placeholder:text-xs"
@@ -35,6 +96,7 @@ const SignUp = () => {
             </label>
             <input
               type="email"
+              onBlur={(e) => setEmail(e.target.value)}
               name="email"
               placeholder="Enter your email"
               className="input bg-black text-white input-bordered placeholder:text-xs"
@@ -44,12 +106,29 @@ const SignUp = () => {
           <div className="form-control">
             <label className="label">
               <span className="label-text text-white">
+                Photo URL <span className="text-red-700">*</span>
+              </span>
+            </label>
+            <input
+              type="text"
+              onBlur={(e) => setPhotoUrl(e.target.value)}
+              name="photoUrl"
+              placeholder="Enter the photo URL"
+              className="input bg-black text-white input-bordered placeholder:text-xs"
+              required
+            />
+          </div>
+
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-white">
                 Password <span className="text-red-700">*</span>
               </span>
             </label>
             <input
-              // type={showPassword ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               name="password"
+              onBlur={(e) => setPassword(e.target.value)}
               placeholder="Enter your new password"
               className="input input-bordered bg-black text-white placeholder:text-xs"
               required
@@ -62,7 +141,7 @@ const SignUp = () => {
                 data-ripple-dark="true"
               >
                 <input
-                  // onClick={() => setShowPassword(!showPassword)}
+                  onClick={() => setShowPassword(!showPassword)}
                   type="checkbox"
                   className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
                   id="checkbox"
@@ -89,8 +168,7 @@ const SignUp = () => {
                 htmlFor="checkbox"
               >
                 <span className="text-white">
-                  Show Password
-                  {/* {showPassword ? "Hide Password" : "Show Password"} */}
+                  {showPassword ? "Hide Password" : "Show Password"}
                 </span>
               </label>
             </div>
@@ -101,15 +179,14 @@ const SignUp = () => {
               type="submit"
               className="btn border-none text-white bg-[#2c1e6d] hover:bg-[#140d32]"
             >
-              Log In
+              Sign Up
             </button>
           </div>
         </form>
 
-        {/* {loginError && (
-            <p className="text-red-900 text-center -mt-5 py-3">{loginError}</p>
-          )} */}
-
+        {error && (
+          <p className="text-red-900 text-center -mt-5 py-3">{error}</p>
+        )}
         <p className="mb-7 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
           <span className="text-white">Already have an account?</span>
           <Link

@@ -8,6 +8,7 @@ import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import Help from "../../Pages/Help/Help";
 import Activity from "../../Pages/Activity/Activity";
+import PrivetRouter from "../PrivetRouter/PrivetRouter";
 
 const router = createBrowserRouter([
   {
@@ -16,37 +17,40 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: '/',
-        element: <Home></Home>
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path: 'about',
-        element: <About></About>
+        path: "about",
+        element: (
+          <PrivetRouter>
+            <About></About>
+          </PrivetRouter>
+        ),
       },
       {
-        path: 'blog',
-        element: <Blog></Blog>
+        path: "blog",
+        element: <Blog></Blog>,
       },
       {
-        path: 'activity',
-        element: <Activity></Activity>
+        path: "activity",
+        element: <Activity></Activity>,
       },
       {
-        path: 'help',
-        element: <Help></Help>
-      }
-    ]
+        path: "help",
+        element: <Help></Help>,
+      },
+    ],
   },
 
   {
-    path: '/login',
-    element: <Login></Login>
+    path: "/login",
+    element: <Login></Login>,
   },
 
   {
     path: "/registration",
-    element: <SignUp></SignUp>
+    element: <SignUp></SignUp>,
   },
-
 ]);
 export default router
