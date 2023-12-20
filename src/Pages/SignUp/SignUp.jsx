@@ -62,15 +62,15 @@ const SignUp = () => {
   };
 
   return (
-    <div className="grid md:grid-cols-2 gap-5 py-14 bg-[#010313]">
+    <div className="grid lg:grid-cols-2 gap-5 py-14 px-5 bg-[#010313]">
       <div className="flex justify-center items-center">
         <img className="md:h-[500px]" src={signUpImg} alt="" />
       </div>
 
-      <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-[#0e0d21] ">
-        <h2 className="text-3xl mt-4 font-extrabold text-center text-[#c29a4b] text-opacity-50">
+      <div className="card flex-shrink-0 w-full lg:max-w-sm shadow-2xl bg-[#0e0d21] ">
+        <Link to={"/"} className="text-3xl mt-4 font-extrabold text-center text-[#c29a4b] text-opacity-50">
           Sign Up Please
-        </h2>
+        </Link>
 
         <form onSubmit={handleRegistration} className="card-body ">
           <div className="form-control">

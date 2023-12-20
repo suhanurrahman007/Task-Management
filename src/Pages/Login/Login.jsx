@@ -105,10 +105,10 @@ const Login = () => {
         <img className="w-full md:w-96" src={loginImg} alt="" />
       </div>
 
-      <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-[#0e0d21] ">
-        <h2 className="text-3xl mt-4 font-extrabold text-center text-[#c29a4b] text-opacity-50">
+      <div className="card flex-shrink-0 w-full lg:max-w-sm shadow-2xl bg-[#0e0d21] ">
+        <Link to={"/"} className="text-3xl mt-4 font-extrabold text-center text-[#c29a4b] text-opacity-50">
           Sign In Please
-        </h2>
+        </Link>
 
         <form onSubmit={handleLogin} className="card-body ">
           <div className="form-control">

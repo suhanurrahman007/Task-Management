@@ -2,6 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 import avatar from "../../assets/avatar.png";
 import logo from "../../assets/logo/logo.png";
 import useAuth from "../../Hooks/useAuth";
+import Container from "../../components/Container/Container";
+import Footer from "../../components/Footer/Footer";
 
 const MainLayout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -15,38 +17,36 @@ const MainLayout = ({ children }) => {
     }
   };
 
-    const linkStyle = (isActive, isPending) => {
-      if (isPending) return "text-gray-500 bg-gray-100";
-      if (isActive) return "text-blue-300 font-bold bg-[#010313]";
-      return "text-white";
-    };
+  const linkStyle = (isActive, isPending) => {
+    if (isPending) return "text-gray-500 bg-gray-100";
+    if (isActive) return "text-blue-300 font-bold bg-[#010313]";
+    return "text-white";
+  };
 
-    const commonClasses =
-      "px-4  py-2 rounded-lg hover:underline hover:scale-110 hover:shadow-lg transition delay-150 duration-300 ease-in-out";
+  const commonClasses =
+    "px-4  py-2 rounded-lg hover:underline hover:scale-110 hover:shadow-lg transition delay-150 duration-300 ease-in-out";
 
-    const links = ["", "about", "blog", "activity", "help"].map(
-      (path, index) => {
-        const text =
-          index === 0 ? "Home" : path.charAt(0).toUpperCase() + path.slice(1);
-        return (
-          <NavLink
-            key={path}
-            to={`/${path}`}
-            className={({ isActive, isPending }) =>
-              `${linkStyle(isActive, isPending)} ${commonClasses}`
-            }
-          >
-            {text}
-          </NavLink>
-        );
-      }
+  const links = ["", "about", "blog", "activity", "help"].map((path, index) => {
+    const text =
+      index === 0 ? "Home" : path.charAt(0).toUpperCase() + path.slice(1);
+    return (
+      <NavLink
+        key={path}
+        to={`/${path}`}
+        className={({ isActive, isPending }) =>
+          `${linkStyle(isActive, isPending)} ${commonClasses}`
+        }
+      >
+        {text}
+      </NavLink>
     );
+  });
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="w-full px-5 md:px-16 lg:px-20 bg-[#0d0d21] text-white navbar flex justify-between">
+        <div className="w-full xl:px-20 md:px-10 sm:px-2 px-4 bg-[#0d0d21] text-white navbar flex justify-between">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-3"
@@ -68,8 +68,11 @@ const MainLayout = ({ children }) => {
               </svg>
             </label>
           </div>
-          <div className="px-2 mx-2 text-center">
-            <Link to={"/"} className="btn btn-ghost normal-case text-xl">
+          <div className="text-center">
+            <Link
+              to={"/"}
+              className="flex justify-center items-center space-x-2 font-bold normal-case text-xl"
+            >
               <img className="w-9 rounded-full" src={logo} />
               <span className="text-md text-blue-100">FaporBaz</span>
             </Link>
@@ -118,6 +121,9 @@ const MainLayout = ({ children }) => {
         </div>
         {/* Page content here */}
         {children}
+        <div>
+          <Footer></Footer>
+        </div>
       </div>
       <div className="drawer-side">
         <label
