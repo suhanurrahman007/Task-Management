@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import avatar from "../../assets/avatar.png";
 import logo from "../../assets/logo/logo.png";
 import useAuth from "../../Hooks/useAuth";
-import Container from "../../components/Container/Container";
 import Footer from "../../components/Footer/Footer";
 
 const MainLayout = ({ children }) => {
@@ -98,12 +97,21 @@ const MainLayout = ({ children }) => {
             </label>
             <ul
               tabIndex={0}
-              className="mt-3 z-[1] py-2  space-y-3 px-4 bg-[#202074] text-white shadow menu menu-sm dropdown-content hover:bg-[#010313] hover:text-blue-300   rounded-md w-28"
+              className="mt-3 z-[1] py-2  space-y-3 px-4 bg-[#202074] text-white shadow menu menu-sm dropdown-content hover:bg-[#010313] hover:text-blue-300   rounded-md w-60"
             >
+              <h2 className="text-xs text-purple-600 font-bold">
+                {user ? user.displayName : "No Any User"}
+              </h2>
+              <hr className="border-gray-600" />
+
               <Link className="hover:font-bold" to={"/"}>
                 Home
               </Link>
-              <hr className="border-gray-800" />
+              <hr className="border-gray-600" />
+              <Link className="hover:font-bold" to={"/dashboard/myProfile"}>
+                Dashboard
+              </Link>
+              <hr className="border-gray-600" />
               {user ? (
                 <button
                   onClick={handleLogout}

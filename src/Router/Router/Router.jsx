@@ -9,6 +9,11 @@ import SignUp from "../../Pages/SignUp/SignUp";
 import Help from "../../Pages/Help/Help";
 import Activity from "../../Pages/Activity/Activity";
 import PrivetRouter from "../PrivetRouter/PrivetRouter";
+import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
+import Dashboard from "../../Layout/Dashboard/Dashboard";
+import AddTask from "../../Pages/Dashboard/AddTask/AddTask";
+import TaskList from "../../Pages/Dashboard/TaskList/TaskList";
+import TaskItem from "../../Pages/Dashboard/TaskItem/TaskItem";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +56,33 @@ const router = createBrowserRouter([
   {
     path: "/registration",
     element: <SignUp></SignUp>,
+  },
+
+  {
+    path: "dashboard",
+    element: (
+      <PrivetRouter>
+        <Dashboard></Dashboard>
+      </PrivetRouter>
+    ),
+    children: [
+      {
+        path: "myProfile",
+        element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "addTask",
+        element: <AddTask></AddTask>,
+      },
+      {
+        path: "tasklist",
+        element: <TaskList></TaskList>,
+      },
+      {
+        path: "taskItem",
+        element: <TaskItem></TaskItem>,
+      },
+    ],
   },
 ]);
 export default router
