@@ -11,13 +11,14 @@ const Banner = () => {
             Task Management Strategies
             <br />
             <span data-aos="flip-down" className="text-[#c5a35e]">
-              for Developers
+              For Corporate
             </span>
           </h1>
-          <p
-            className="lg:w-3/4 lg:text-justify text-gray-500"
-          >
-            In the fast-paced world of software development, efficient task management is crucial for success. Explore effective strategies tailored for developers to streamline workflows, enhance collaboration, and boost productivity. 
+          <p className="lg:w-3/4 lg:text-justify text-gray-500">
+            It seems like your message is a bit unclear. If by short dec you
+            mean a short description or if you have a specific topic or question
+            in mind, please provide more details so I can better assist
+            you.Whether it is related to task management.
           </p>
           <div>
             <Link

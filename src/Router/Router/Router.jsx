@@ -12,9 +12,8 @@ import PrivetRouter from "../PrivetRouter/PrivetRouter";
 import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
 import Dashboard from "../../Layout/Dashboard/Dashboard";
 import AddTask from "../../Pages/Dashboard/AddTask/AddTask";
-import TaskList from "../../Pages/Dashboard/Task/TaskList";
-import TaskItem from "../../Pages/Dashboard/TaskItem/TaskItem";
 import Task from "../../Pages/Dashboard/Task/Task";
+import UpdateTask from "../../Pages/Dashboard/Task/UpdateTask";
 
 const router = createBrowserRouter([
   {
@@ -80,8 +79,8 @@ const router = createBrowserRouter([
         element: <Task></Task>,
       },
       {
-        path: "taskItem",
-        element: <TaskItem></TaskItem>,
+        path: "updateTask/:id",
+        element: <UpdateTask></UpdateTask>,
       },
     ],
   },
