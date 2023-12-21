@@ -1,17 +1,16 @@
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from "../../assets/login/login.png";
 import { useState } from "react";
-import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const { login, googleUser, githubUser, logout } = useAuth();
+  const { login, googleUser, logout } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,11 +24,7 @@ const Login = () => {
       const res = await login(email, password);
       console.log(res.user);
       if (res.user) {
-        Swal.fire({
-          icon: "success",
-          title: "Wow...",
-          text: "Successfully Login your account!",
-        });
+        toast.success("Successfully Login your account!");
 
         navigate(location?.state ? location.state : "/");
       } else {
@@ -38,11 +33,7 @@ const Login = () => {
       console.log(res);
     } catch (error) {
       console.log(error.message);
-      Swal.fire({
-        icon: "error",
-        title: "Opps...",
-        text: `${error.message}`,
-      });
+      toast.error(`${error.message}`);
     }
   };
 
@@ -52,11 +43,7 @@ const Login = () => {
     try {
       const res = await googleUser(email, password);
       if (res.user) {
-        Swal.fire({
-          icon: "success",
-          title: "Wow...",
-          text: "Successfully Login your account!",
-        });
+        toast.success("Successfully Login your account!");
 
         navigate(location?.state ? location.state : "/");
       } else {
@@ -65,40 +52,11 @@ const Login = () => {
       console.log(res);
     } catch (error) {
       console.log(error.message);
-      Swal.fire({
-        icon: "error",
-        title: "Opps...",
-        text: `${error.message}`,
-      });
+      toast.error(`${error.message}`);
+
     }
   };
 
-  const handleGithub = async (e) => {
-    e.preventDefault();
-    console.log(email, password);
-    try {
-      const res = await githubUser(email, password);
-      if (res.user) {
-        Swal.fire({
-          icon: "success",
-          title: "Wow...",
-          text: "Successfully Login your account!",
-        });
-
-        navigate(location?.state ? location.state : "/");
-      } else {
-        logout();
-      }
-      console.log(res);
-    } catch (error) {
-      console.log(error.message);
-      Swal.fire({
-        icon: "error",
-        title: "Opps...",
-        text: `${error.message}`,
-      });
-    }
-  };
   return (
     <div className="grid md:grid-cols-2 gap-5 p-5 py-14 bg-[#010313]">
       <div className="flex justify-center items-center">
@@ -218,14 +176,6 @@ const Login = () => {
             <span className="normal-case text-xs">Sign in with Google</span>
           </button>
 
-          <button
-            onClick={handleGithub}
-            type="submit"
-            className="btn btn-outline btn-[#140d32] w-full text-white bg-[#0e0d21] hover:bg-[#140d32]"
-          >
-            <FaGithub className="text-xl transition-all hover:scale-125"></FaGithub>
-            <span className="normal-case text-xs">Sign in with Github</span>
-          </button>
         </div>
 
         <p className="mb-7 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">

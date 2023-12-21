@@ -50,19 +50,8 @@ const Dashboard = () => {
             isPending ? "pending" : isActive ? "active" : ""
           }
         >
-          <FaMagnet></FaMagnet>
-          Task List
-        </NavLink>
-      </li>
-      <li id="sidebar">
-        <NavLink
-          to="/dashboard/taskItem"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
           <SiTask></SiTask>
-          Task Item
+          Task List
         </NavLink>
       </li>
     </>

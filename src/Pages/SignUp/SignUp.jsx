@@ -1,8 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import signUpImg from "../../assets/signUp/signUp.png";
 import { useState } from "react";
-import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -45,19 +45,11 @@ const SignUp = () => {
       const result = await createUser(email, password);
       console.log("created", result.user);
 
-      Swal.fire({
-        icon: "success",
-        title: "Wow...",
-        text: "Successfully created your account!",
-      });
+      toast.success("Successfully Sign up your account!");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
       console.log(error.message);
-      Swal.fire({
-        icon: "error",
-        title: "Opps...",
-        text: `${error.message}`,
-      });
+      toast.error(`${error.message}`);
     }
   };
 
