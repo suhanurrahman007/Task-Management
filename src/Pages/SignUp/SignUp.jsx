@@ -3,6 +3,7 @@ import signUpImg from "../../assets/signUp/signUp.png";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -55,12 +56,18 @@ const SignUp = () => {
 
   return (
     <div className="grid lg:grid-cols-2 gap-5 py-14 px-5 bg-[#010313]">
+      <Helmet>
+        <title>Technovision - SignUp</title>
+      </Helmet>
       <div className="flex justify-center items-center">
         <img className="md:h-[500px]" src={signUpImg} alt="" />
       </div>
 
       <div className="card flex-shrink-0 w-full lg:max-w-sm shadow-2xl bg-[#0e0d21] ">
-        <Link to={"/"} className="text-3xl mt-4 font-extrabold text-center text-[#c29a4b] text-opacity-50">
+        <Link
+          to={"/"}
+          className="text-3xl mt-4 font-extrabold text-center text-[#c29a4b] text-opacity-50"
+        >
           Sign Up Please
         </Link>
 

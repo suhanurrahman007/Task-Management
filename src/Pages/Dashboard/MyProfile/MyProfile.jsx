@@ -3,6 +3,7 @@ import { SiTask } from "react-icons/si";
 import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const MyProfile = () => {
     const axios = useAxios()
@@ -18,12 +19,18 @@ const MyProfile = () => {
 
     return (
       <div className="px-4 py-8 bg-[#010313] text-white space-y-8">
+        <Helmet>
+          <title>Technovision - Profile</title>
+        </Helmet>
         <h2 className="text-2xl font-bold">
           Hi, <span className="text-orange-700">Welcome Back!</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div className="flex justify-center items-center space-x-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-8 py-8 rounded-lg">
+          <div
+            data-aos="zoom-out"
+            className="flex justify-center items-center space-x-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-8 py-8 rounded-lg"
+          >
             <span className="text-5xl">
               <SiTask></SiTask>
             </span>
@@ -33,7 +40,10 @@ const MyProfile = () => {
             </div>
           </div>
 
-          <div className="flex justify-center items-center space-x-5 bg-gradient-to-r from-[#D3A256] to-[#FDE8C0] px-8 py-8 rounded-lg">
+          <div
+            data-aos="zoom-out"
+            className="flex justify-center items-center space-x-5 bg-gradient-to-r from-[#D3A256] to-[#FDE8C0] px-8 py-8 rounded-lg"
+          >
             <span className="text-5xl">
               <FaUserFriends></FaUserFriends>
             </span>
@@ -43,7 +53,10 @@ const MyProfile = () => {
             </div>
           </div>
 
-          <div className="flex justify-center items-center space-x-5 bg-gradient-to-r from-[#FE4880] to-[#FECDE9] px-8 py-8 rounded-lg">
+          <div
+            data-aos="zoom-out"
+            className="flex justify-center items-center space-x-5 bg-gradient-to-r from-[#FE4880] to-[#FECDE9] px-8 py-8 rounded-lg"
+          >
             <span className="text-5xl">
               <FaCommentDots></FaCommentDots>
             </span>
@@ -54,10 +67,17 @@ const MyProfile = () => {
           </div>
         </div>
 
-        <div className="lg:flex px-2 lg:flex-col lg:justify-center lg:items-center shadow-xl rounded-2xl">
+        <div
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-in-back"
+          data-aos-delay="300"
+          data-aos-offset="0"
+          className="lg:flex px-2 lg:flex-col lg:justify-center lg:items-center shadow-xl rounded-2xl"
+        >
           <div className="h-24 lg:w-2/3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
           <div className="h-72 lg:w-2/3 flex flex-col justify-center items-center">
             <img
+              data-aos="flip-up"
               className="w-20 rounded-full lg:-mt-36"
               src={user?.photoURL}
               alt=""

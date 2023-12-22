@@ -3,6 +3,10 @@ import avatar from "../../assets/avatar.png";
 import logo from "../../assets/logo/logo.png";
 import useAuth from "../../Hooks/useAuth";
 import Footer from "../../components/Footer/Footer";
+import { FaHome } from "react-icons/fa";
+import { MdLogin } from "react-icons/md";
+import { BiLogOut } from "react-icons/bi";
+import { BiSolidDashboard } from "react-icons/bi";
 
 const MainLayout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -72,8 +76,8 @@ const MainLayout = ({ children }) => {
               to={"/"}
               className="flex justify-center items-center space-x-2 font-bold normal-case text-xl"
             >
-              <img className="w-9 rounded-full" src={logo} />
-              <span className="text-md text-blue-100">FaporBaz</span>
+              <img data-aos="flip-up" className="w-9 rounded-full" src={logo} />
+              <span className="text-md text-blue-100">Technovision</span>
             </Link>
           </div>
           <div className="flex-1 hidden lg:flex lg:items-center justify-center">
@@ -99,28 +103,49 @@ const MainLayout = ({ children }) => {
               tabIndex={0}
               className="mt-3 z-[1] py-2  space-y-3 px-4 bg-[#202074] text-white shadow menu menu-sm dropdown-content hover:bg-[#010313] hover:text-blue-300   rounded-md w-60"
             >
-              <h2 className="text-xs text-purple-600 font-bold">
+              <h2
+                data-aos="flip-up"
+                className="text-xs text-purple-600 font-bold"
+              >
                 {user ? user.displayName : "No Any User"}
               </h2>
               <hr className="border-gray-600" />
 
-              <Link className="hover:font-bold" to={"/"}>
+              <Link className="hover:font-bold flex items-center" to={"/"}>
+                <span className="mr-1">
+                  <FaHome></FaHome>
+                </span>
                 Home
               </Link>
               <hr className="border-gray-600" />
-              <Link className="hover:font-bold" to={"/dashboard/myProfile"}>
+              <Link
+                className="hover:font-bold flex items-center"
+                to={"/dashboard/myProfile"}
+              >
+                <span className="mr-1">
+                  <BiSolidDashboard></BiSolidDashboard>
+                </span>
                 Dashboard
               </Link>
               <hr className="border-gray-600" />
               {user ? (
                 <button
                   onClick={handleLogout}
-                  className="hover:font-bold text-left" /* to={"/login"} */
+                  className="hover:font-bold flex items-center text-left" /* to={"/login"} */
                 >
+                  <span className="mr-1">
+                    <BiLogOut></BiLogOut>
+                  </span>
                   Logout
                 </button>
               ) : (
-                <Link className="hover:font-bold" to={"/login"}>
+                <Link
+                  className="hover:font-bold flex items-center"
+                  to={"/login"}
+                >
+                  <span className="mr-1">
+                    <MdLogin></MdLogin>
+                  </span>
                   Login
                 </Link>
               )}

@@ -4,6 +4,7 @@ import loginImg from "../../assets/login/login.png";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -59,12 +60,18 @@ const Login = () => {
 
   return (
     <div className="grid md:grid-cols-2 gap-5 p-5 py-14 bg-[#010313]">
+      <Helmet>
+        <title>Technovision - Login</title>
+      </Helmet>
       <div className="flex justify-center items-center">
         <img className="w-full md:w-96" src={loginImg} alt="" />
       </div>
 
       <div className="card flex-shrink-0 w-full lg:max-w-sm shadow-2xl bg-[#0e0d21] ">
-        <Link to={"/"} className="text-3xl mt-4 font-extrabold text-center text-[#c29a4b] text-opacity-50">
+        <Link
+          to={"/"}
+          className="text-3xl mt-4 font-extrabold text-center text-[#c29a4b] text-opacity-50"
+        >
           Sign In Please
         </Link>
 
@@ -175,7 +182,6 @@ const Login = () => {
             <FcGoogle className="transition-all text-xl hover:scale-125"></FcGoogle>
             <span className="normal-case text-xs">Sign in with Google</span>
           </button>
-
         </div>
 
         <p className="mb-7 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">

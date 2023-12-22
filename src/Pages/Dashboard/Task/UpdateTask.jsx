@@ -10,8 +10,7 @@ const UpdateTask = () => {
   const [tasks] = useTask()
   const {id} = useParams()
 
-  const findTask = tasks.find(item => item._id === id)
-  const {title, description, priority, deadlines } = findTask;
+  const findTask = tasks?.find(item => item?._id === id)
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data, e) => {
@@ -42,7 +41,12 @@ const UpdateTask = () => {
         miniHeader={"User any Task added here"}
       ></SectionTitle>
 
-      <div>
+      <div
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="300"
+        data-aos-offset="0"
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
           <div className="form-control">
             <label className="label">
@@ -52,7 +56,7 @@ const UpdateTask = () => {
             </label>
             <input
               type="text"
-              defaultValue={title}
+              defaultValue={findTask?.title}
               {...register("title", { required: true })}
               placeholder="Enter your Task Title"
               className="input bg-black text-white input-bordered placeholder:text-xs"
@@ -66,7 +70,7 @@ const UpdateTask = () => {
                 </span>
               </label>
               <select
-                defaultValue={priority}
+                defaultValue={findTask?.priority}
                 {...register("priority", { required: true })}
                 className="select bg-black text-white select-bordered w-full"
               >
@@ -88,7 +92,7 @@ const UpdateTask = () => {
               <input
                 type="date" // Change type to "date"
                 id="deadlines"
-                defaultValue={deadlines}
+                defaultValue={findTask?.deadlines}
                 {...register("deadlines", { required: true })}
                 className="input bg-black text-white input-bordered"
               />
@@ -103,7 +107,7 @@ const UpdateTask = () => {
             </label>
             <textarea
               {...register("description", { required: true })}
-              defaultValue={description}
+              defaultValue={findTask?.description}
               placeholder="Enter your Task Description"
               className="textarea bg-black text-white textarea-bordered placeholder:text-xs"
             />

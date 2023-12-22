@@ -14,7 +14,10 @@ const TargetAudience = () => {
         miniHeader={"Welcome to Our Platform!"}
       ></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div className="card card-compact bg-[#0D0D21] shadow-xl rounded-md ">
+        <div
+          data-aos="zoom-out"
+          className="card card-compact bg-[#0D0D21] shadow-xl rounded-md "
+        >
           <figure>
             <img
               className="h-32 w-full transform hover:scale-110 transition-transform duration-300"
@@ -30,7 +33,10 @@ const TargetAudience = () => {
             </p>
           </div>
         </div>
-        <div className="card card-compact bg-[#0D0D21] shadow-xl rounded-md ">
+        <div
+          data-aos="zoom-out"
+          className="card card-compact bg-[#0D0D21] shadow-xl rounded-md "
+        >
           <figure>
             <img
               className="h-32 w-full transform hover:scale-110 transition-transform duration-300"
@@ -46,7 +52,10 @@ const TargetAudience = () => {
             </p>
           </div>
         </div>
-        <div className="card card-compact bg-[#0D0D21] shadow-xl rounded-md ">
+        <div
+          data-aos="zoom-out"
+          className="card card-compact bg-[#0D0D21] shadow-xl rounded-md "
+        >
           <figure>
             <img
               className="h-32 w-full transform hover:scale-110 transition-transform duration-300"
@@ -62,7 +71,10 @@ const TargetAudience = () => {
             </p>
           </div>
         </div>
-        <div className="card card-compact bg-[#0D0D21] shadow-xl rounded-md ">
+        <div
+          data-aos="zoom-out"
+          className="card card-compact bg-[#0D0D21] shadow-xl rounded-md "
+        >
           <figure>
             <img
               className="h-32 w-full transform hover:scale-110 transition-transform duration-300"

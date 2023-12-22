@@ -27,11 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "about",
-        element: (
-          <PrivetRouter>
-            <About></About>
-          </PrivetRouter>
-        ),
+        element: <About></About>,
       },
       {
         path: "blog",
@@ -85,4 +81,4 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-export default router
+export default router;

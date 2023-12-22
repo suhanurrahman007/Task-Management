@@ -34,6 +34,7 @@ const TaskList = ({ task, refetch }) => {
   };
   return (
     <div
+      data-aos="zoom-out"
       ref={drag}
       className="bg-[#010313] p-3 rounded-md shadow-md text-white space-y-2"
     >

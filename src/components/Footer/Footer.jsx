@@ -42,30 +42,31 @@ const Footer = () => {
         <nav>
           <div className="flex space-x-7">
             <a
+              data-aos="flip-up"
               href="https://www.facebook.com/mohammed.suhan.359/"
               className=" text-3xl text-blue-500 hover:text-blue-700 transform hover:scale-125 transition-transform duration-300"
             >
               <FaFacebook />
             </a>
-            <a
+            <a data-aos="flip-up"
               href="#"
               className="text-3xl text-blue-500 hover:text-blue-700 transform hover:scale-125 transition-transform duration-300"
             >
               <FaLinkedinIn />
             </a>
-            <a
+            <a data-aos="flip-up"
               href="#"
               className="text-3xl text-pink-500 hover:text-pink-700 transform hover:scale-125 transition-transform duration-300"
             >
               <FaInstagram />
             </a>
-            <a
+            <a data-aos="flip-up"
               href="#"
               className="text-3xl text-gray-500 hover:text-gray-700 transform hover:scale-125 transition-transform duration-300"
             >
               <FaGithub />
             </a>
-            <a
+            <a data-aos="flip-up"
               href="#"
               className="text-3xl text-blue-400 hover:text-blue-600 transform hover:scale-125 transition-transform duration-300"
             >

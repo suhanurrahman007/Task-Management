@@ -3,6 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxios from "../../../Hooks/useAxios";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const AddTask = () => {
   const { user } = useAuth();
@@ -34,12 +35,20 @@ const AddTask = () => {
   };
   return (
     <div className="py-8 bg-[#010313] overflow-x-auto">
+      <Helmet>
+        <title>Technovision - TaskForm</title>
+      </Helmet>
       <SectionTitle
         header={"Add Task"}
         miniHeader={"User any Task added here"}
       ></SectionTitle>
 
-      <div>
+      <div
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="300"
+        data-aos-offset="0"
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
           <div className="form-control">
             <label className="label">

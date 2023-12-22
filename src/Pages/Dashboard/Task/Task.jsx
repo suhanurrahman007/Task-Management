@@ -3,6 +3,7 @@ import useTask from "../../../Hooks/useTask";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import TaskList from "./TaskList";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const Task = () => {
   const [tasks, isLoading, refetch] = useTask();
@@ -32,6 +33,9 @@ const Task = () => {
 
   return (
     <div className="p-2 bg-[#010313] text-white py-10">
+      <Helmet>
+        <title>Technovision - TaskList</title>
+      </Helmet>
       <SectionTitle
         header={"Task List"}
         miniHeader={"User Create All Task here"}

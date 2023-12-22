@@ -1,4 +1,4 @@
-import { FaAd, FaHome, FaMagnet } from "react-icons/fa";
+import { FaAd, FaHome } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { SiTask } from "react-icons/si";
@@ -6,6 +6,7 @@ import { VscThreeBars } from "react-icons/vsc";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
     const {user, logout} = useAuth()
@@ -61,6 +62,9 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Technovision - Dashboard</title>
+      </Helmet>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
@@ -78,9 +82,9 @@ const Dashboard = () => {
               className="btn btn-ghost normal-case items-center text-xs md:text-xl"
             >
               <span>
-                <img className="w-10" src={logo} alt="" />
+                <img data-aos="flip-up" className="w-10" src={logo} alt="" />
               </span>
-              <span className="text-white">United</span>
+              <span className="text-white">Technovision</span>
             </Link>
           </div>
           {/* Page content here */}
@@ -101,9 +105,14 @@ const Dashboard = () => {
                   className="flex space-x-2 font-bold mt-5 normal-case items-center text-xs md:text-xl"
                 >
                   <span>
-                    <img className="w-10" src={logo} alt="" />
+                    <img
+                      data-aos="flip-up"
+                      className="w-10"
+                      src={logo}
+                      alt=""
+                    />
                   </span>
-                  <span className="text-white">United</span>
+                  <span className="text-white">Technovision</span>
                 </Link>
               </div>
               <div className="divider"></div>
@@ -133,7 +142,9 @@ const Dashboard = () => {
                       }
                       onClick={handleLogout}
                     >
-                        <span><MdLogout></MdLogout></span>
+                      <span>
+                        <MdLogout></MdLogout>
+                      </span>
                       Logout
                     </button>
                   ) : (
