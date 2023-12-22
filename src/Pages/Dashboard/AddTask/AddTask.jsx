@@ -21,6 +21,7 @@ const AddTask = () => {
       description: data?.description,
       priority: data?.priority,
       deadlines: data?.deadlines,
+      status: "to-do"
     };
 
     // console.log(taskInfo);
@@ -44,10 +45,6 @@ const AddTask = () => {
       ></SectionTitle>
 
       <div
-        data-aos="fade-zoom-in"
-        data-aos-easing="ease-in-back"
-        data-aos-delay="300"
-        data-aos-offset="0"
       >
         <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
           <div className="form-control">

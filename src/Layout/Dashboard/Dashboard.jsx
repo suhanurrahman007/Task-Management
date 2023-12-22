@@ -82,7 +82,7 @@ const Dashboard = () => {
               className="btn btn-ghost normal-case items-center text-xs md:text-xl"
             >
               <span>
-                <img data-aos="flip-up" className="w-10" src={logo} alt="" />
+                <img className="w-10" src={logo} alt="" />
               </span>
               <span className="text-white">Technovision</span>
             </Link>
@@ -106,7 +106,6 @@ const Dashboard = () => {
                 >
                   <span>
                     <img
-                      data-aos="flip-up"
                       className="w-10"
                       src={logo}
                       alt=""

@@ -77,7 +77,6 @@ const MyProfile = () => {
           <div className="h-24 lg:w-2/3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
           <div className="h-72 lg:w-2/3 flex flex-col justify-center items-center">
             <img
-              data-aos="flip-up"
               className="w-20 rounded-full lg:-mt-36"
               src={user?.photoURL}
               alt=""
